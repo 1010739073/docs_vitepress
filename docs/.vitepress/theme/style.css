@@ -1,0 +1,17 @@
+/* .vitepress/theme/style.css */
+
+/* 覆盖默认主题变量 */
+:root {
+  --vp-c-brand-1: #646cff; /* 主品牌色 */
+  --vp-c-brand-2: #747bff; /* 主品牌色 hover */
+  --vp-home-hero-name-color: transparent; /* 首页标题渐变效果 */
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #bd34fe 30%, #41d1ff);
+
+  --vp-font-family-base: 'Operator Mono', 'Source Code Pro', monospace; /* 基础字体 */
+}
+
+/* 深色模式下的变量 */
+:root.dark {
+  --vp-c-brand-1: #8a91ff;
+  --vp-c-brand-2: #a0a7ff;
+}
