@@ -6,7 +6,7 @@ import { withSidebar } from 'vitepress-sidebar'
 const vitePressOptions = {
     base: "/",
     title: "Mr-Ning的文档站",
-    description: "记录下一些笔记",
+    description: "Mr-Ning的文档站、Mr-Ning记录下一些笔记、Mr-Ning后端开发",
     // logo: '../public/logo.png',
     lastUpdated: true,
     // 插件
