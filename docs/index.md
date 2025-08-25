@@ -7,7 +7,7 @@ hero:
   text: "由Vite、Vue驱动的静态网站生成器"
   tagline: 写写记记
   image:
-    src: /public/logo.png
+    src: /logo.png
     alt: VitePress
   actions:
     - theme: brand

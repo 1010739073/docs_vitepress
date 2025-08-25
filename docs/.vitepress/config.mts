@@ -9,7 +9,7 @@ const vitePressOptions = {
     description: "记录下一些笔记",
     // logo: '../public/logo.png',
     head: [
-        ['link',{ rel: 'icon', href: '/public/logo.png'}],
+        ['link',{ rel: 'icon', href: '/logo.png'}],
     ],
     themeConfig: {
         // https://vitepress.dev/reference/default-theme-config
