@@ -8,8 +8,11 @@ const vitePressOptions = {
     title: "Mr-Ning的文档站",
     description: "记录下一些笔记",
     // logo: '../public/logo.png',
+    lastUpdated: true,
+    // 屏蔽错误提示
+    // @ts-ignore
     head: [
-        ['link',{ rel: 'icon', href: '/logo.png'}],
+        ['link',{ rel: 'icon', href: '/logo.png'}] as any,
     ],
     themeConfig: {
         // https://vitepress.dev/reference/default-theme-config
@@ -22,6 +25,7 @@ const vitePressOptions = {
                 items: [
                     { text: 'PHP', link: '/backend/PHP' },
                     { text: 'Python', link: '/backend/Python' },
+                    { text: 'MySQL', link: '/backend/MySQL' },
                 ]
             },
             {
@@ -67,11 +71,16 @@ const vitePressOptions = {
         },
         lastUpdatedText: '上次更新',
         returnToTopLabel: '返回顶部',
+        langMenuLabel: '选择语言',
         // 文档页脚文本配置
         docFooter: {
             prev: '上一页',
             next: '下一页'
         },
+        outline: {
+            label: '页面导航',
+            level: 'deep',
+        }
         // editLink: {
         //     pattern: '路径地址',
         //     text: '对本页提出修改建议',
@@ -118,10 +127,23 @@ const vitePressSidebarOptions = [
         prefixSeparator: '.'
     },
     {
-        documentRootPath: 'docs',
-        scanStartPath: 'backend',
+        documentRootPath: 'docs/backend',
+        scanStartPath: 'Python',
         resolvePath: '/backend/Python/',
-        useTitleFromFrontmatter: true
+        useTitleFromFrontmatter: true,
+        sortMenusOrderNumericallyFromLink: true,
+        removePrefixAfterOrdering: true,
+        prefixSeparator: '.'
+        
+    },
+    {
+        documentRootPath: 'docs/backend',
+        scanStartPath: 'MySQL',
+        resolvePath: '/backend/MySQL/',
+        useTitleFromFrontmatter: true,
+        sortMenusOrderNumericallyFromLink: true,
+        removePrefixAfterOrdering: true,
+        prefixSeparator: '.'
     },
 ];
 
