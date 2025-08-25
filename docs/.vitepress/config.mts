@@ -9,6 +9,9 @@ const vitePressOptions = {
     description: "记录下一些笔记",
     // logo: '../public/logo.png',
     lastUpdated: true,
+    // 插件
+    plugins: [
+    ],
     // 屏蔽错误提示
     // @ts-ignore
     head: [
