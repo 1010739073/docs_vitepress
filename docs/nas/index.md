@@ -6,18 +6,19 @@ title: 群辉备忘录
 ssh Mr-Ning@172.17.0.1
 ```
 ## docker端口服务
-|       服务       |                      地址                      |
-| :--------------: | :--------------------------------------------: |
-|  Video Station   |   [Video Station](http://ddns.nsit.top:9007)   |
-|       青龙       |       [青龙](http://ddns.nsit.top:10000)       |
-|      vscode      |      [vscode](http://ddns.nsit.top:8443)       |
-|    phpmyadmin    |    [phpmyadmin](http://ddns.nsit.top:10001)    |
-|     nginxui      |      [nginxui](http://ddns.nsit.top:8091)      |
-|      浏览器      |     [浏览器](http://ddns.nsit.top:10002/)      |
-|      zblog       |      [zblog](http://ddns.nsit.top:10008)       |
-|     laravel      |     [laravel](http://ddns.nsit.top:10009)      |
-|     苹果cms      |     [苹果cms](http://ddns.nsit.top:10010)      |
-|     勾股cms      |     [勾股cms](http://ddns.nsit.top:10011)      |
+|     服务      | 端口号 |                    地址                    |
+| :-----------: | :----: | :----------------------------------------: |
+| Video Station |  9007  | [Video Station](http://ddns.nsit.top:9007) |
+|     青龙      | 10000  |     [青龙](http://ddns.nsit.top:10000)     |
+|    vscode     |  8443  |    [vscode](http://ddns.nsit.top:8443)     |
+|  phpmyadmin   | 10001  |  [phpmyadmin](http://ddns.nsit.top:10001)  |
+|    nginxui    |  8091  |    [nginxui](http://ddns.nsit.top:8091)    |
+|    浏览器     | 10002  |   [浏览器](http://ddns.nsit.top:10002/)    |
+|     zblog     | 10008  |    [zblog](http://ddns.nsit.top:10008)     |
+|    laravel    | 10009  |   [laravel](http://ddns.nsit.top:10009)    |
+|    苹果cms    | 10010  |   [苹果cms](http://ddns.nsit.top:10010)    |
+|    勾股cms    | 10011  |   [勾股cms](http://ddns.nsit.top:10011)    |
+| iptv-sources  | 10012  | [iptv-sources](http://ddns.nsit.top:10012) |
 ## 添加伪静态
 ```
 cd /usr/local/etc/nginx/conf.d
