@@ -29,6 +29,7 @@ const vitePressOptions = {
                     { text: 'PHP', link: '/backend/PHP' },
                     { text: 'Python', link: '/backend/Python' },
                     { text: 'MySQL', link: '/backend/MySQL' },
+                    { text: 'Redis', link: '/backend/Redis' },
                 ]
             },
             {
@@ -133,6 +134,16 @@ const vitePressSidebarOptions = [
         documentRootPath: 'docs/backend',
         scanStartPath: 'Python',
         resolvePath: '/backend/Python/',
+        useTitleFromFrontmatter: true,
+        sortMenusOrderNumericallyFromLink: true,
+        removePrefixAfterOrdering: true,
+        prefixSeparator: '.'
+        
+    },
+    {
+        documentRootPath: 'docs/backend',
+        scanStartPath: 'Redis',
+        resolvePath: '/backend/Redis/',
         useTitleFromFrontmatter: true,
         sortMenusOrderNumericallyFromLink: true,
         removePrefixAfterOrdering: true,
