@@ -11,6 +11,7 @@ ssh Mr-Ning@172.17.0.1
 | Video Station |  9007  | [Video Station](http://ddns.nsit.top:9007) |
 |     青龙      | 10000  |     [青龙](http://ddns.nsit.top:10000)     |
 |    vscode     |  8443  |    [vscode](http://ddns.nsit.top:8443)     |
+|    openlist     |  5255  |    [openlist](http://ddns.nsit.top:5255)     |
 |  phpmyadmin   | 10001  |  [phpmyadmin](http://ddns.nsit.top:10001)  |
 |    nginxui    |  8091  |    [nginxui](http://ddns.nsit.top:8091)    |
 |    浏览器     | 10002  |   [浏览器](http://ddns.nsit.top:10002/)    |
