@@ -1,9 +1,13 @@
 ---
 title: 群辉备忘录
 ---
-## docker登录主机控制台
+## nas命令
 ```
+# docker登录主机控制台
 ssh Mr-Ning@172.17.0.1
+
+# liunx用户，在不切换用户情况下执行命令
+sudo -u Mr-Ning php -v
 ```
 ## docker端口服务
 |     服务      | 端口号 |                    地址                    |
