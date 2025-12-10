@@ -81,6 +81,7 @@ const vitePressOptions = {
             prev: '上一页',
             next: '下一页'
         },
+        sidebarMenuLabel: '菜单',
         outline: {
             label: '页面导航',
             level: 'deep',
