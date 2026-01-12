@@ -24,6 +24,7 @@ sudo -u Mr-Ning php -v
 |    苹果cms    | 10010  |   [苹果cms](http://ddns.nsit.top:10010)    |
 |    勾股cms    | 10011  |   [勾股cms](http://ddns.nsit.top:10011)    |
 | iptv-sources  | 10012  | [iptv-sources](http://ddns.nsit.top:10012) |
+| yinshun  | 10013  | [yinshun](http://ddns.nsit.top:10013) |
 ## 添加伪静态
 ```
 1. 先在web station添加网页服务
