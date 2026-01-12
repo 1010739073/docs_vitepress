@@ -26,14 +26,14 @@ sudo -u Mr-Ning php -v
 | iptv-sources  | 10012  | [iptv-sources](http://ddns.nsit.top:10012) |
 ## 添加伪静态
 ```
+1. 先在web station添加网页服务
+2. web station添加门户服务
+3. 确定nginx配置文件位置
 cd /usr/local/etc/nginx/conf.d
-# 1
 ls -ll .serv*
-
-mkdir /usr/local/etc/nginx/conf.d/fad32e89-89f2-498b-aae4-27a564a4141c
-
-vim /usr/local/etc/nginx/conf.d/fad32e89-89f2-498b-aae4-27a564a4141c/user.conf
-# 2
+mkdir /usr/local/etc/nginx/conf.d/文件名目录
+vim /usr/local/etc/nginx/conf.d/cd1f8ed6-a702-4031-a5cc-e92b5ddd3353/user.conf
+4. 确定nginx配置文件位置
 cd /usr/local/etc/nginx/conf.d-available
 # 通过ls命令升序查看文件修改时间
 ls -tr
