@@ -33,6 +33,12 @@ const vitePressOptions = {
                 ]
             },
             {
+                text: '大数据',
+                items: [
+                    { text: 'Hadoop', link: '/bigdata/Hadoop' },
+                ]
+            },
+            {
                 text: '教程',
                 items: [
                     { text: 'vitepress文档', link: 'https://vitepress.dev/zh/guide/' },
@@ -46,6 +52,17 @@ const vitePressOptions = {
                     { text: 'sojson', link: 'https://www.sojson.com' },
                     { text: '时间戳', link: 'https://tool.lu/timestamp/' },
                     
+                ]
+            },
+            {
+                text: '图床',
+                items: [
+                    { text: '大厂图床', link: 'https://file.sang.pub/' },
+                    { text: '任你流', link: 'https://file.leishennb.icu/' },
+                    { text: '柯艺图床', link: 'https://tc.qdqqd.com/' },
+                    { text: '抖音解析', link: 'https://695402.xyz/dy' },
+                    { text: '喷子图床', link: 'https://pz.al/' },
+                    { text: '乱搞文件床', link: 'https://www.luangao.de/' },
                 ]
             },
         ],
@@ -164,6 +181,24 @@ const vitePressSidebarOptions = [
         documentRootPath: 'docs',
         scanStartPath: 'nas',
         resolvePath: '/nas/',
+        useTitleFromFrontmatter: true,
+        sortMenusOrderNumericallyFromLink: true,
+        removePrefixAfterOrdering: true,
+        prefixSeparator: '.'
+    },
+    {
+        documentRootPath: 'docs',
+        scanStartPath: 'bigdata',
+        resolvePath: '/bigdata/',
+        useTitleFromFrontmatter: true,
+        sortMenusOrderNumericallyFromLink: true,
+        removePrefixAfterOrdering: true,
+        prefixSeparator: '.'
+    },
+    {
+        documentRootPath: 'docs/bigdata',
+        scanStartPath: 'Hadoop',
+        resolvePath: '/bigdata/Hadoop/',
         useTitleFromFrontmatter: true,
         sortMenusOrderNumericallyFromLink: true,
         removePrefixAfterOrdering: true,
