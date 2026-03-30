@@ -204,6 +204,24 @@ const vitePressSidebarOptions = [
         removePrefixAfterOrdering: true,
         prefixSeparator: '.'
     },
+    {
+        documentRootPath: 'docs',
+        scanStartPath: 'question',
+        resolvePath: '/question/',
+        useTitleFromFrontmatter: true,
+        sortMenusOrderNumericallyFromLink: true,
+        removePrefixAfterOrdering: true,
+        prefixSeparator: '.'
+    },
+    {
+        documentRootPath: 'docs/question',
+        scanStartPath: 'PHP',
+        resolvePath: '/question/PHP/',
+        useTitleFromFrontmatter: true,
+        sortMenusOrderNumericallyFromLink: true,
+        removePrefixAfterOrdering: true,
+        prefixSeparator: '.'
+    },
 ];
 
 export default defineConfig(withSidebar(vitePressOptions, vitePressSidebarOptions));
