@@ -39,6 +39,12 @@ const vitePressOptions = {
                 ]
             },
             {
+                text: '知识点',
+                items: [
+                    { text: '知识点', link: '/question' },
+                ]
+            },
+            {
                 text: '教程',
                 items: [
                     { text: 'vitepress文档', link: 'https://vitepress.dev/zh/guide/' },
