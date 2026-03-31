@@ -26,6 +26,7 @@ const vitePressOptions = {
                 text: '后端',
                 activeMatch: '/backend/*',
                 items: [
+                    { text: '工具', link: '/backend/tools' },
                     { text: 'PHP', link: '/backend/PHP' },
                     { text: 'Python', link: '/backend/Python' },
                     { text: 'Go', link: '/backend/Go' },
@@ -151,6 +152,15 @@ const vitePressSidebarOptions = [
     },
     {
         documentRootPath: 'docs/backend',
+        scanStartPath: 'Go',
+        resolvePath: '/backend/Go/',
+        useTitleFromFrontmatter: true,
+        sortMenusOrderNumericallyFromLink: true,
+        removePrefixAfterOrdering: true,
+        prefixSeparator: '.'
+    },
+    {
+        documentRootPath: 'docs/backend',
         scanStartPath: 'Python',
         resolvePath: '/backend/Python/',
         useTitleFromFrontmatter: true,
@@ -200,6 +210,15 @@ const vitePressSidebarOptions = [
         documentRootPath: 'docs/bigdata',
         scanStartPath: 'Hadoop',
         resolvePath: '/bigdata/Hadoop/',
+        useTitleFromFrontmatter: true,
+        sortMenusOrderNumericallyFromLink: true,
+        removePrefixAfterOrdering: true,
+        prefixSeparator: '.'
+    },
+    {
+        documentRootPath: 'docs/backend',
+        scanStartPath: 'tools',
+        resolvePath: '/backend/tools/',
         useTitleFromFrontmatter: true,
         sortMenusOrderNumericallyFromLink: true,
         removePrefixAfterOrdering: true,
