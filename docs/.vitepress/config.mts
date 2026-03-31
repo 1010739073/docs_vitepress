@@ -28,6 +28,7 @@ const vitePressOptions = {
                 items: [
                     { text: 'PHP', link: '/backend/PHP' },
                     { text: 'Python', link: '/backend/Python' },
+                    { text: 'Go', link: '/backend/Go' },
                     { text: 'MySQL', link: '/backend/MySQL' },
                     { text: 'Redis', link: '/backend/Redis' },
                 ]
@@ -36,12 +37,6 @@ const vitePressOptions = {
                 text: '大数据',
                 items: [
                     { text: 'Hadoop', link: '/bigdata/Hadoop' },
-                ]
-            },
-            {
-                text: '知识点',
-                items: [
-                    { text: '知识点', link: '/question' },
                 ]
             },
             {
@@ -205,24 +200,6 @@ const vitePressSidebarOptions = [
         documentRootPath: 'docs/bigdata',
         scanStartPath: 'Hadoop',
         resolvePath: '/bigdata/Hadoop/',
-        useTitleFromFrontmatter: true,
-        sortMenusOrderNumericallyFromLink: true,
-        removePrefixAfterOrdering: true,
-        prefixSeparator: '.'
-    },
-    {
-        documentRootPath: 'docs',
-        scanStartPath: 'question',
-        resolvePath: '/question/',
-        useTitleFromFrontmatter: true,
-        sortMenusOrderNumericallyFromLink: true,
-        removePrefixAfterOrdering: true,
-        prefixSeparator: '.'
-    },
-    {
-        documentRootPath: 'docs/question',
-        scanStartPath: 'PHP',
-        resolvePath: '/question/PHP/',
         useTitleFromFrontmatter: true,
         sortMenusOrderNumericallyFromLink: true,
         removePrefixAfterOrdering: true,
