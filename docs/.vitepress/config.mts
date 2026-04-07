@@ -53,6 +53,9 @@ const vitePressOptions = {
                 items: [
                     { text: 'sojson', link: 'https://www.sojson.com' },
                     { text: '时间戳', link: 'https://tool.lu/timestamp/' },
+                    { text: 'urlencode', link: 'https://tool.chinaz.com/tools/urlencode.aspx' },
+                    { text: 'unicode', link: 'https://tool.chinaz.com/tools/unicode.aspx' },
+                    
                     
                 ]
             },
