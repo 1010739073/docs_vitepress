@@ -60,19 +60,31 @@ Hadoop生态系统由以下核心组件组成：
 
 ## 3. Hadoop生态系统
 
-### 3.1 数据处理工具
+### 3.1 核心组件详解
+
+- [HDFS 分布式文件系统](./1.hdfs.md) - 详解 HDFS 架构、工作原理、操作命令和性能优化
+- [MapReduce 计算框架](./3.mapreduce.md) - 详解 MapReduce 工作流程、核心概念和代码示例
+- [YARN 资源管理器](./4.yarn.md) - 详解 YARN 架构、调度器和资源管理
+- [Hive 数据仓库](./5.hive.md) - 详解 Hive 查询语言、表操作和性能优化
+- [HBase NoSQL 数据库](./6.hbase.md) - 详解 HBase 数据模型、Java API 和应用场景
+- [ZooKeeper 分布式协调服务](./7.zookeeper.md) - 详解 ZooKeeper 数据模型、应用场景和代码示例
+- [Flume 日志收集](./8.flume.md) - 详解 Flume 架构、配置和实际应用
+- [Kafka 消息队列](./9.kafka.md) - 详解 Kafka 架构、生产消费和高级特性
+- [Sqoop 数据传输工具](./10.sqoop.md) - 详解 Sqoop 导入导出、作业管理和代码示例
+
+### 3.2 数据处理工具
 
 - **Hive**：基于SQL的查询引擎，将SQL转换为MapReduce任务
 - **Pig**：数据流处理工具，使用Pig Latin语言
-- **Spark**：内存计算框架，提供更快的处理速度
+- **Spark**：内存计算框架，提供更快的处理速度 [详见 Spark 全面详解](./2.spark.md)
 
-### 3.2 数据存储
+### 3.3 数据存储
 
 - **HBase**：分布式NoSQL数据库，适合随机实时读写
 - **Hive Metastore**：元数据存储
 - **HCatalog**：跨工具的元数据服务
 
-### 3.3 数据管理和调度
+### 3.4 数据管理和调度
 
 - **Oozie**：工作流调度系统
 - **ZooKeeper**：分布式协调服务
