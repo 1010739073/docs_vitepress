@@ -8,8 +8,8 @@
         @click="switchMeal(tab.type)"
       >
         <span class="tab-icon">{{ tab.icon }}</span>
-        {{ tab.label }}
-        <span v-if="currentMealType === tab.type" class="time-tag">现在</span>
+        <span class="tab-label">{{ tab.label }}</span>
+        <span v-if="tab.type === recommendedType" class="time-tag">现在</span>
       </button>
     </div>
 
@@ -96,6 +96,7 @@ const mealPresets = [
 ]
 
 const currentMealType = ref('lunch')
+const recommendedType = ref('') // 记录系统时间推荐的类型
 const allMealData = ref(Object.fromEntries(mealPresets.map(m => [m.type, m.default])))
 const deg = ref(0)
 const transitionActive = ref(true)
@@ -106,11 +107,17 @@ const newItemName = ref('')
 const newItemWeight = ref(5)
 const activeIndex = ref(-1)
 
-onMounted(() => {
+// 获取当前时间应该吃什么的逻辑
+const getRecommendedMeal = () => {
   const hour = new Date().getHours()
-  if (hour >= 6 && hour < 11) currentMealType.value = 'breakfast'
-  else if (hour >= 11 && hour < 17) currentMealType.value = 'lunch'
-  else currentMealType.value = 'dinner'
+  if (hour >= 6 && hour < 11) return 'breakfast'
+  if (hour >= 11 && hour < 17) return 'lunch'
+  return 'dinner'
+}
+
+onMounted(() => {
+  recommendedType.value = getRecommendedMeal()
+  currentMealType.value = recommendedType.value // 初始化进入对应的 Tab
   
   document.addEventListener('click', () => { activeIndex.value = -1 })
 })
@@ -167,15 +174,9 @@ function spin() {
 
 const onTransitionEnd = () => { isSpinning.value = false; result.value = window.__pending }
 
-// 修复：位移由百分比改为基于转盘半径的计算值
-function getSliceStyle(s) {
-  return { 
-    transform: `translate(-50%, -50%) rotate(${s.midAngle}deg)` 
-  }
-}
+function getSliceStyle(s) { return { transform: `translate(-50%, -50%) rotate(${s.midAngle}deg)` } }
 
 function getTextStyle(s) { 
-  // 基础半径 210px，文字放在 140px 处左右
   return { 
     fontSize: `${Math.max(12, Math.min(16, s.sliceAngle / 2.2))}px`, 
     opacity: s.sliceAngle < 10 ? 0 : 1,
@@ -185,9 +186,6 @@ function getTextStyle(s) {
 
 function handleSliceClick(index, s) {
   activeIndex.value = index
-  if (s.sliceAngle < 10) {
-    result.value = `选中了：${s.name}`
-  }
 }
 
 function getSliceColor(i) { return `hsl(${(i * (360 / currentFoods.value.length)) % 360}, 75%, 85%)` }
@@ -202,39 +200,75 @@ function removeItem(i) { currentFoods.value.splice(i, 1) }
   font-family: -apple-system, sans-serif;
 }
 
-.meal-tabs { display: flex; background: #f1f1f1; padding: 4px; border-radius: 12px; margin: 10px 0 25px; }
-.tab-item { border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer; background: transparent; color: #666; font-weight: bold; position: relative; font-size: 14px;}
-.tab-item.active { background: #fff; color: #ff4757; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+/* 修复：恢复最初版本的 Tab 样式 */
+.meal-tabs { 
+  display: flex; 
+  background: #f1f1f1; 
+  padding: 5px; 
+  border-radius: 15px; 
+  margin: 10px 0 30px;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+.tab-item { 
+  border: none; 
+  padding: 10px 24px; 
+  border-radius: 12px; 
+  cursor: pointer; 
+  background: transparent; 
+  color: #777; 
+  font-weight: bold; 
+  position: relative; 
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s ease;
+}
+.tab-item.active { 
+  background: #fff; 
+  color: #ff4757; 
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
+}
+.time-tag { 
+  position: absolute; 
+  top: -8px; 
+  right: -5px; 
+  background: #2ed573; 
+  color: #fff; 
+  font-size: 10px; 
+  padding: 2px 6px; 
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(46, 213, 115, 0.3);
+  font-weight: normal;
+}
 
 .main-content { display: flex; flex-direction: column; align-items: center; width: 100%; }
-.title { color: #2f3542; margin-bottom: 25px; font-size: 1.4rem; }
+.title { color: #2f3542; margin-bottom: 25px; font-size: 1.5rem; font-weight: 800; }
 
 .wheel-wrapper { 
   position: relative; 
   width: 420px; height: 420px; 
   max-width: 85vw; max-height: 85vw;
-  margin-bottom: 30px; 
+  margin-bottom: 40px; 
 }
 
 .pointer { 
   position: absolute; top: -15px; left: 50%; transform: translateX(-50%); 
-  width: 0; height: 0; border-left: 15px solid transparent; 
-  border-right: 15px solid transparent; border-top: 28px solid #ff4757; 
-  z-index: 10; 
+  width: 0; height: 0; border-left: 16px solid transparent; 
+  border-right: 16px solid transparent; border-top: 30px solid #ff4757; 
+  z-index: 10; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
 }
 
 .wheel { 
-  width: 100%; height: 100%; border-radius: 50%; border: 6px solid #fff; 
-  box-shadow: 0 10px 40px rgba(0,0,0,0.1); position: relative; overflow: hidden; 
+  width: 100%; height: 100%; border-radius: 50%; border: 8px solid #fff; 
+  box-shadow: 0 12px 50px rgba(0,0,0,0.12); position: relative; overflow: hidden; 
 }
 
-/* 修复后的扇形文字容器 */
 .slice-container { 
   position: absolute; 
   top: 50%; 
   left: 50%; 
-  width: 2px; /* 给一个极小的宽度，确保子元素渲染 */
-  height: 2px;
+  width: 4px; height: 4px;
   display: flex;
   justify-content: center;
   z-index: 2;
@@ -249,50 +283,45 @@ function removeItem(i) { currentFoods.value.splice(i, 1) }
   max-width: 120px; 
   overflow: hidden; 
   text-overflow: ellipsis; 
-  transform: translateY(-50%); /* 确保在轨道线上垂直居中 */
-  pointer-events: auto;
+  transform: translateY(-50%);
 }
 
-/* 激活状态/悬停状态放大 */
 .slice-container.is-active .text,
 .slice-container:hover .text { 
   opacity: 1 !important;
-  transform: translateY(-50%) scale(1.7) !important;
-  text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transform: translateY(-50%) scale(1.75) !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.2);
   color: #000;
   z-index: 100;
 }
 
-.spin-btn { background: #ff4757; color: #fff; border: none; padding: 14px 70px; font-size: 1.2rem; border-radius: 50px; cursor: pointer; font-weight: bold; box-shadow: 0 8px 20px rgba(255,71,87,0.3); }
-.result-box { height: 60px; margin-top: 20px; text-align: center; }
-.result { font-size: 20px; font-weight: bold; }
-.result span { color: #ff4757; font-size: 26px; }
+.spin-btn { 
+  background: #ff4757; color: #fff; border: none; padding: 16px 80px; 
+  font-size: 1.25rem; border-radius: 50px; cursor: pointer; font-weight: bold; 
+  box-shadow: 0 10px 25px rgba(255,71,87,0.35); transition: 0.3s;
+}
+.spin-btn:active { transform: scale(0.96); }
+
+.result-box { height: 70px; margin-top: 25px; text-align: center; }
+.result { font-size: 22px; font-weight: bold; color: #2f3542; }
+.result span { color: #ff4757; font-size: 28px; border-bottom: 3px solid #ff4757; }
 
 .config-toggle {
-  position: fixed; right: 20px; bottom: 20px; width: 55px; height: 55px;
-  border-radius: 50%; background: #fff; border: none; font-size: 24px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1); z-index: 99; 
+  position: fixed; right: 25px; bottom: 25px; width: 60px; height: 60px;
+  border-radius: 50%; background: #fff; border: none; font-size: 26px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1); z-index: 99; cursor: pointer;
 }
 
-/* 抽屉样式保持原有逻辑 */
 .drawer-mask { position: fixed; inset: 0; background: rgba(0,0,0,0.4); opacity: 0; visibility: hidden; transition: 0.3s; z-index: 1000; }
 .drawer-mask.active { opacity: 1; visibility: visible; }
-.drawer-content { position: absolute; right: -320px; top: 0; bottom: 0; width: 300px; background: #fff; padding: 25px; transition: 0.3s; display: flex; flex-direction: column; }
+.drawer-content { position: absolute; right: -320px; top: 0; bottom: 0; width: 310px; background: #fff; padding: 25px; transition: 0.3s; display: flex; flex-direction: column; }
 .drawer-content.open { right: 0; }
-.drawer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-.add-form { display: flex; gap: 5px; margin-bottom: 15px; }
-.add-form input { padding: 8px; border: 1px solid #ddd; border-radius: 6px; flex: 1; min-width: 0; }
-.add-form button { background: #2f3542; color: #fff; border: none; padding: 0 12px; border-radius: 6px; }
-.list-container { flex: 1; overflow-y: auto; }
-.list-item { display: flex; align-items: center; gap: 8px; padding: 10px; background: #f9f9f9; margin-bottom: 8px; border-radius: 8px; }
-.color-dot { width: 8px; height: 8px; border-radius: 50%; }
-.edit-name { border: none; background: transparent; flex: 1; font-size: 14px; }
-.edit-weight { width: 35px; border: 1px solid #eee; text-align: center; }
+.drawer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
 
 @media (max-width: 600px) {
-  .drawer-content { right: 0; bottom: -70vh; top: auto; width: 100%; height: 70vh; border-radius: 20px 20px 0 0; }
+  .drawer-content { right: 0; bottom: -70vh; top: auto; width: 100%; height: 70vh; border-radius: 25px 25px 0 0; }
   .drawer-content.open { bottom: 0; }
-  /* 移动端减小文字轨道偏移量以匹配较小的转盘 */
-  .text { top: -30vw !important; } 
+  .text { top: -30vw !important; } /* 适配移动端轨道 */
+  .tab-item { padding: 10px 15px; font-size: 13px; }
 }
 </style>
