@@ -32,6 +32,8 @@ const vitePressOptions = {
                     { text: 'Go', link: '/backend/Go' },
                     { text: 'MySQL', link: '/backend/MySQL' },
                     { text: 'Redis', link: '/backend/Redis' },
+                    { text: 'Linux', link: '/backend/Linux' },
+                    { text: 'Nginx', link: '/backend/Nginx' },
                 ]
             },
             {
@@ -186,6 +188,24 @@ const vitePressSidebarOptions = [
         documentRootPath: 'docs/backend',
         scanStartPath: 'MySQL',
         resolvePath: '/backend/MySQL/',
+        useTitleFromFrontmatter: true,
+        sortMenusOrderNumericallyFromLink: true,
+        removePrefixAfterOrdering: true,
+        prefixSeparator: '.'
+    },
+    {
+        documentRootPath: 'docs/backend',
+        scanStartPath: 'Linux',
+        resolvePath: '/backend/Linux/',
+        useTitleFromFrontmatter: true,
+        sortMenusOrderNumericallyFromLink: true,
+        removePrefixAfterOrdering: true,
+        prefixSeparator: '.'
+    },
+    {
+        documentRootPath: 'docs/backend',
+        scanStartPath: 'Nginx',
+        resolvePath: '/backend/Nginx/',
         useTitleFromFrontmatter: true,
         sortMenusOrderNumericallyFromLink: true,
         removePrefixAfterOrdering: true,
