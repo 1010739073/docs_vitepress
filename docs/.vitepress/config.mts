@@ -34,6 +34,8 @@ const vitePressOptions = {
                     { text: 'Redis', link: '/backend/Redis' },
                     { text: 'Linux', link: '/backend/Linux' },
                     { text: 'Nginx', link: '/backend/Nginx' },
+                    { text: '分布式', link: '/backend/Distributed' },
+                    { text: 'Elasticsearch', link: '/backend/Elasticsearch' },
                 ]
             },
             {
@@ -206,6 +208,24 @@ const vitePressSidebarOptions = [
         documentRootPath: 'docs/backend',
         scanStartPath: 'Nginx',
         resolvePath: '/backend/Nginx/',
+        useTitleFromFrontmatter: true,
+        sortMenusOrderNumericallyFromLink: true,
+        removePrefixAfterOrdering: true,
+        prefixSeparator: '.'
+    },
+    {
+        documentRootPath: 'docs/backend',
+        scanStartPath: 'Distributed',
+        resolvePath: '/backend/Distributed/',
+        useTitleFromFrontmatter: true,
+        sortMenusOrderNumericallyFromLink: true,
+        removePrefixAfterOrdering: true,
+        prefixSeparator: '.'
+    },
+    {
+        documentRootPath: 'docs/backend',
+        scanStartPath: 'Elasticsearch',
+        resolvePath: '/backend/Elasticsearch/',
         useTitleFromFrontmatter: true,
         sortMenusOrderNumericallyFromLink: true,
         removePrefixAfterOrdering: true,
