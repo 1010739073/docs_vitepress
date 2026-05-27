@@ -47,6 +47,13 @@ const vitePressOptions = {
                 ]
             },
             {
+                text: 'AI编程',
+                activeMatch: '/aicode/*',
+                items: [
+                    { text: 'Claude Code', link: '/aicode/Claude_Code使用教程' },
+                ]
+            },
+            {
                 text: '教程',
                 items: [
                     { text: 'vitepress文档', link: 'https://vitepress.dev/zh/guide/' },
@@ -282,6 +289,15 @@ const vitePressSidebarOptions = [
         documentRootPath: 'docs/backend',
         scanStartPath: 'tools',
         resolvePath: '/backend/tools/',
+        useTitleFromFrontmatter: true,
+        sortMenusOrderNumericallyFromLink: true,
+        removePrefixAfterOrdering: true,
+        prefixSeparator: '.'
+    },
+    {
+        documentRootPath: 'docs',
+        scanStartPath: 'aicode',
+        resolvePath: '/aicode/',
         useTitleFromFrontmatter: true,
         sortMenusOrderNumericallyFromLink: true,
         removePrefixAfterOrdering: true,
