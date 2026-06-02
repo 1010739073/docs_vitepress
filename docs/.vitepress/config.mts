@@ -51,6 +51,7 @@ const vitePressOptions = {
                 activeMatch: '/aicode/*',
                 items: [
                     { text: 'Claude Code', link: '/aicode/Claude_Code使用教程' },
+                    { text: 'Codex CLI', link: '/aicode/Codex_CLI使用教程' },
                 ]
             },
             {
