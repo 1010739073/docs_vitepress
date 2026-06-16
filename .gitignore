@@ -3,4 +3,5 @@ dist
 cache
 .temp
 .vscode
+.comate
 .DS_Store
