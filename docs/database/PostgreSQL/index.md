@@ -123,44 +123,15 @@ WHERE table_schema = 'public';
 
 ### 常用表与数据操作
 
-创建表：
+基础建表、插入、查询、更新、删除等 CRUD 示例已经整理到 [基础入门](1.基础入门.md)。首页只保留最常见操作的入口说明：
 
-```sql
-CREATE TABLE users (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(50) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-```
-
-插入数据：
-
-```sql
-INSERT INTO users (name) VALUES ('张三');
-```
-
-查询数据：
-
-```sql
-SELECT * FROM users;
-SELECT * FROM users LIMIT 10;
-SELECT id, name FROM users WHERE id = 1;
-```
-
-更新数据：
-
-```sql
-UPDATE users SET name = '李四' WHERE id = 1;
-```
-
-删除数据和删除表：
-
-```sql
-DELETE FROM users WHERE id = 1;
-DROP TABLE users;
-```
-
-`DELETE` 和 `DROP TABLE` 都会删除数据，执行前要确认条件和备份情况。尤其是 `DELETE` 不带 `WHERE` 条件时会删除整张表的数据，`DROP TABLE` 会直接删除表结构和表数据。
+| 操作 | 常用语句 | 详细说明 |
+|-----|---------|---------|
+| 创建表 | `CREATE TABLE` | 见 [基础入门](1.基础入门.md) |
+| 插入数据 | `INSERT INTO` | 见 [基础入门](1.基础入门.md) |
+| 查询数据 | `SELECT` | 见 [基础入门](1.基础入门.md) |
+| 更新数据 | `UPDATE` | 见 [基础入门](1.基础入门.md) |
+| 删除数据 | `DELETE`、`DROP TABLE` | 见 [基础入门](1.基础入门.md)，执行前要确认条件和备份情况 |
 
 ### 常用辅助命令
 
@@ -181,6 +152,55 @@ DROP TABLE users;
 | `\timing` | 开启或关闭 SQL 执行耗时显示 |
 
 如果不确定某个 `psql` 元命令怎么用，可以使用 `\?` 查看帮助；如果想查看 SQL 语法帮助，可以使用 `\h SQL关键字`，例如 `\h SELECT`。
+
+### PostgreSQL 常见命令行工具
+
+除了 `psql` 里的 `\l`、`\d` 这类元命令，PostgreSQL 还自带了一批命令行工具。它们一般在操作系统终端中执行，用来完成连接数据库、备份恢复、初始化集群、维护索引、检查服务状态、搭建主从复制等工作。
+
+可以简单理解为：`psql` 适合进入数据库后执行 SQL 和元命令；`pg_dump`、`pg_restore`、`pg_ctl`、`pg_basebackup` 等工具更适合在终端脚本、运维操作和备份恢复流程中使用。
+
+| 工具 | 主要作用 | 常见场景 | 注意事项 |
+|-----|---------|---------|---------|
+| `psql` | PostgreSQL 官方交互式客户端，用于连接数据库、执行 SQL、运行元命令 | 日常查询、管理数据库对象、排查问题 | 执行危险 SQL 前要确认当前连接的数据库和用户 |
+| `createdb` | 创建数据库，是 `CREATE DATABASE` 的命令行封装 | 初始化业务库、脚本化创建数据库 | 创建前确认库名、编码、属主和模板库 |
+| `dropdb` | 删除数据库，是 `DROP DATABASE` 的命令行封装 | 清理测试库、删除废弃库 | 高风险操作，删除前必须确认目标库和备份情况 |
+| `createuser` | 创建数据库角色或用户 | 初始化应用账号、创建管理员或只读账号 | 创建后还需要按需授予数据库和对象权限 |
+| `dropuser` | 删除数据库角色或用户 | 清理废弃账号 | 删除前确认该角色是否拥有对象或仍被业务使用 |
+| `pg_dump` | 逻辑备份单个数据库，可导出 SQL 文本或自定义格式文件 | 单库备份、迁移、导出部分对象 | 备份通常不阻塞读写，恢复前要确认版本和对象依赖 |
+| `pg_dumpall` | 逻辑备份整个实例，包括角色、表空间等全局对象 | 整实例迁移、备份全局账号信息 | 数据量大时耗时较长，恢复顺序和权限需要提前规划 |
+| `pg_restore` | 恢复 `pg_dump` 生成的自定义、目录或 tar 格式备份 | 恢复 `pg_dump -F c`、`-F d`、`-F t` 备份 | 不用于恢复纯 SQL 文件，纯 SQL 通常用 `psql` 执行 |
+| `initdb` | 初始化 PostgreSQL 数据目录，生成基础系统库和配置文件 | 新装 PostgreSQL 后初始化数据目录 | 只在新集群初始化时使用，不要对已有数据目录重复执行 |
+| `pg_ctl` | 启动、停止、重启、重新加载服务，也可查看服务状态 | 本机服务管理、脚本化启停、加载配置 | 生产环境操作前要确认影响范围，优先使用规范的服务管理方式 |
+| `postgres` | PostgreSQL 服务端主进程 | 底层服务启动、排查启动参数问题 | 通常由 `pg_ctl` 或系统服务管理器启动，不建议日常手动直接运行 |
+| `vacuumdb` | 对数据库执行 `VACUUM` 或 `ANALYZE` | 回收死元组、更新统计信息、维护表膨胀 | 大库执行前要关注 IO、锁等待和业务高峰期 |
+| `reindexdb` | 重建数据库中的索引 | 处理索引膨胀、索引损坏、维护索引性能 | 重建索引可能占用资源并影响并发访问 |
+| `clusterdb` | 按索引重新组织表的物理存储顺序 | 让表数据按常用索引顺序重新排列 | 可能持有较重锁，生产环境需谨慎评估 |
+| `pg_isready` | 检查 PostgreSQL 服务是否可以连接 | 健康检查、启动脚本、监控探测 | 只能说明连接状态，不代表业务 SQL 一定正常 |
+| `pg_config` | 查看 PostgreSQL 安装路径、编译参数和扩展编译配置 | 安装扩展、排查环境路径、编译插件 | 常用于开发和运维排查，不直接操作数据库数据 |
+| `pg_controldata` | 查看数据目录控制文件信息 | 排查数据库状态、检查点、时间线等底层信息 | 需要能访问数据目录，通常用于故障诊断 |
+| `pg_resetwal` | 重置 WAL 控制信息 | 极端灾难恢复场景 | 极高风险工具，可能造成数据不一致，不能作为常规修复手段 |
+| `pg_basebackup` | 从运行中的主库生成物理基础备份 | 搭建从库、制作物理备份 | 会产生网络和磁盘 IO，需确认复制权限和备份目录 |
+| `pg_receivewal` | 持续接收主库 WAL 日志 | WAL 归档、备份链路补充 | 需要关注磁盘空间和 WAL 保留策略 |
+| `pg_recvlogical` | 接收逻辑解码产生的变更流 | 逻辑复制、CDC、调试逻辑解码 | 依赖逻辑复制配置和复制槽，长期不用的槽可能堆积 WAL |
+| `pg_rewind` | 将旧主库快速同步到新主库时间线 | 主从切换后修复旧主库、重新加入集群 | 执行前必须确认新旧主库关系和数据目录状态 |
+
+常见低风险查看类命令示例：
+
+```bash
+# 查看 PostgreSQL 客户端版本
+psql --version
+
+# 检查本机 5432 端口上的 PostgreSQL 是否可连接
+pg_isready -h 127.0.0.1 -p 5432
+
+# 查看 PostgreSQL 安装和编译配置信息
+pg_config
+
+# 备份单个数据库为 SQL 文件
+pg_dump -h 127.0.0.1 -p 5432 -U postgres -d postgres -f postgres.sql
+```
+
+备份、恢复、启停服务、删除数据库、重置 WAL、主从修复等操作都可能影响数据安全或服务可用性。生产环境执行前，应先确认当前环境、目标实例、目标数据库、登录用户、备份文件、权限范围和回滚方案。
 
 ### 系统数据库与系统目录
 
@@ -255,150 +275,19 @@ WHERE table_schema = 'public';
 
 这些系统表和视图主要用于查询数据库元数据和运行状态。日常排查可以查询它们，但不要直接 `UPDATE`、`DELETE` 或手动修改 `pg_catalog` 中的系统表，否则可能导致数据库元数据异常。
 
-### 主从库常用命令
+### 主从复制与复制槽
 
-下面的命令主要用于查看主从复制状态和排查复制延迟，只包含查询操作，不包含主从切换、提升从库、删除复制槽等高风险操作。
+主从复制状态、复制延迟、复制槽 Slot、WAL 位点等内容已经整理到 [主从复制](8.主从复制.md)。首页只保留常用入口：
 
-判断当前节点是主库还是从库：
+| 主题 | 常用对象或函数 | 详细说明 |
+|-----|--------------|---------|
+| 判断主库或从库 | `pg_is_in_recovery()` | 见 [主从复制](8.主从复制.md) |
+| 查看主库复制状态 | `pg_stat_replication` | 见 [主从复制](8.主从复制.md) |
+| 查看从库 WAL 接收状态 | `pg_stat_wal_receiver` | 见 [主从复制](8.主从复制.md) |
+| 查看复制槽 | `pg_replication_slots` | 见 [主从复制](8.主从复制.md) |
+| 查看 WAL 位点 | `pg_current_wal_lsn()`、`pg_last_wal_receive_lsn()`、`pg_last_wal_replay_lsn()` | 见 [主从复制](8.主从复制.md) |
 
-```sql
-SELECT pg_is_in_recovery();
-```
-
-| 返回值 | 说明 |
-|-------|------|
-| `false` | 当前节点是主库 |
-| `true` | 当前节点是从库，或当前节点处于恢复模式 |
-
-在主库查看从库连接和复制状态：
-
-```sql
-SELECT pid, usename, application_name, client_addr, state, sync_state,
-       sent_lsn, write_lsn, flush_lsn, replay_lsn
-FROM pg_stat_replication;
-```
-
-`pg_stat_replication` 通常在主库上查询，用来确认从库是否已连接到主库，以及 WAL 发送、写入、刷盘、回放进度。
-
-在从库查看 WAL 接收状态：
-
-```sql
-SELECT status, receive_start_lsn, received_lsn, latest_end_lsn,
-       last_msg_send_time, last_msg_receipt_time
-FROM pg_stat_wal_receiver;
-```
-
-`pg_stat_wal_receiver` 通常在从库上查询，用来确认从库是否正在接收主库发送过来的 WAL 日志，以及最近一次消息发送和接收时间。
-
-在主库查看从库回放延迟：
-
-```sql
-SELECT application_name, client_addr, state, sync_state,
-       pg_wal_lsn_diff(pg_current_wal_lsn(), replay_lsn) AS replay_delay_bytes
-FROM pg_stat_replication;
-```
-
-在从库查看最后一次事务回放时间延迟：
-
-```sql
-SELECT now() - pg_last_xact_replay_timestamp() AS replay_delay_time;
-```
-
-`replay_delay_bytes` 表示主库当前 WAL 位点和从库回放位点相差多少字节。`replay_delay_time` 表示从库最后回放事务距离当前时间的间隔，如果主库长时间没有写入，时间延迟可能看起来较大，需要结合业务写入情况判断。
-
-#### 复制槽 Slot
-
-Replication Slot（复制槽）是 PostgreSQL 用来记录复制消费进度的机制。主库通过 slot 知道从库或逻辑订阅端已经消费到哪个 WAL 位点。
-
-使用 slot 后，即使从库或订阅端短暂断开，主库也会保留它尚未消费的 WAL，避免 WAL 被提前清理后导致从库无法继续同步。
-
-常见 slot 类型：
-
-| 类型 | 说明 | 常见场景 |
-|-----|------|----------|
-| `physical` | 物理复制槽，按 WAL 物理日志保留复制所需内容 | 流复制、主从复制 |
-| `logical` | 逻辑复制槽，配合逻辑解码插件按逻辑变更消费 WAL | 逻辑复制、CDC、数据同步工具 |
-
-查看复制槽信息：
-
-```sql
-SELECT slot_name, slot_type, active, restart_lsn, confirmed_flush_lsn
-FROM pg_replication_slots;
-```
-
-查看复制槽详细信息：
-
-```sql
-SELECT slot_name, plugin, slot_type, datoid, database, temporary, active,
-       active_pid, xmin, catalog_xmin, restart_lsn, confirmed_flush_lsn,
-       wal_status, safe_wal_size, two_phase
-FROM pg_replication_slots;
-```
-
-查看每个 slot 当前大约保留了多少 WAL：
-
-```sql
-SELECT slot_name, slot_type, active, restart_lsn,
-       pg_size_pretty(pg_wal_lsn_diff(pg_current_wal_lsn(), restart_lsn)) AS retained_wal
-FROM pg_replication_slots
-WHERE restart_lsn IS NOT NULL;
-```
-
-查看当前未被客户端使用的 inactive slot：
-
-```sql
-SELECT slot_name, slot_type, active, restart_lsn
-FROM pg_replication_slots
-WHERE active = false;
-```
-
-如果 slot 长期处于 inactive 状态，并且没有消费者继续推进消费位点，主库会持续保留相关 WAL 文件，严重时可能导致磁盘被 WAL 占满。删除 slot 前必须确认没有从库、订阅端或数据同步任务依赖它；本文只提供查询命令，不提供删除 slot 的操作。
-
-查看 WAL 位点：
-
-```sql
--- 主库当前 WAL 位点
-SELECT pg_current_wal_lsn();
-
--- 从库最近接收的 WAL 位点
-SELECT pg_last_wal_receive_lsn();
-
--- 从库最近回放的 WAL 位点
-SELECT pg_last_wal_replay_lsn();
-```
-
-常见复制状态字段说明：
-
-| 字段 | 说明 |
-|-----|------|
-| `state` | 复制连接状态，常见值是 `streaming` |
-| `sync_state` | 同步状态，常见值有 `async`、`sync`、`quorum` |
-| `sent_lsn` | 主库已经发送给从库的 WAL 位点 |
-| `write_lsn` | 从库已经写入本地文件系统的 WAL 位点 |
-| `flush_lsn` | 从库已经刷盘的 WAL 位点 |
-| `replay_lsn` | 从库已经回放完成的 WAL 位点 |
-| `client_addr` | 从库连接到主库时使用的客户端地址 |
-
-常见 slot 字段说明：
-
-| 字段 | 说明 |
-|-----|------|
-| `slot_name` | 复制槽名称 |
-| `slot_type` | 复制槽类型，常见值为 `physical` 或 `logical` |
-| `plugin` | 逻辑解码插件，逻辑复制槽常见字段，物理复制槽通常为空 |
-| `database` | 逻辑复制槽所属数据库，物理复制槽通常为空 |
-| `temporary` | 是否为临时复制槽 |
-| `active` | 当前是否有客户端正在使用该 slot |
-| `active_pid` | 正在使用该 slot 的进程 PID |
-| `xmin` | 该 slot 需要保留的事务 ID 下界 |
-| `catalog_xmin` | 逻辑复制需要保留的系统目录事务 ID 下界 |
-| `restart_lsn` | 为该 slot 保留 WAL 的起始位点 |
-| `confirmed_flush_lsn` | 逻辑复制槽已确认消费的 WAL 位点，物理复制槽通常为空 |
-| `wal_status` | WAL 保留状态，较新版本 PostgreSQL 可见 |
-| `safe_wal_size` | 在变成危险状态前还能写入的大致 WAL 大小，较新版本 PostgreSQL 可见 |
-| `two_phase` | 是否支持两阶段提交解码，部分版本或逻辑复制场景可见 |
-
-不同 PostgreSQL 版本中，`wal_status`、`safe_wal_size`、`two_phase` 等字段可能不存在。如果查询报字段不存在，可以先用 `\d pg_replication_slots` 查看当前版本实际支持的字段。
+复制槽长期 inactive 可能导致主库持续保留 WAL，严重时会占满磁盘。删除复制槽、主从切换、旧主库修复等操作都属于高风险操作，执行前需要确认依赖关系和恢复方案。
 
 ## 与其他数据库对比
 

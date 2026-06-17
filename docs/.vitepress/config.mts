@@ -23,65 +23,88 @@ const vitePressOptions = {
         nav: [
             { text: '首页', link: '/' },
             {
-                text: '后端',
-                activeMatch: '/backend/*',
+                text: '技术文档',
                 items: [
-                    { text: '工具', link: '/backend/tools' },
-                    { text: 'PHP', link: '/backend/PHP' },
-                    { text: 'Python', link: '/backend/Python' },
-                    { text: 'Go', link: '/backend/Go' },
-                    { text: 'MySQL', link: '/backend/MySQL' },
-                    { text: 'SQL Server', link: '/backend/SQLServer' },
-                    { text: 'PostgreSQL', link: '/backend/PostgreSQL' },
-                    { text: 'Redis', link: '/backend/Redis' },
-                    { text: 'Linux', link: '/backend/Linux' },
-                    { text: 'Nginx', link: '/backend/Nginx' },
-                    { text: '分布式', link: '/backend/Distributed' },
-                    { text: 'Elasticsearch', link: '/backend/Elasticsearch' },
+                    {
+                        text: '后端开发',
+                        items: [
+                            { text: 'PHP', link: '/backend/PHP' },
+                            { text: 'Python', link: '/backend/Python' },
+                            { text: 'Go', link: '/backend/Go' },
+                            { text: 'Linux', link: '/backend/Linux' },
+                            { text: 'Nginx', link: '/backend/Nginx' },
+                            { text: '分布式', link: '/backend/Distributed' },
+                        ],
+                    },
+                    {
+                        text: '数据库',
+                        items: [
+                            { text: 'MySQL', link: '/database/MySQL' },
+                            { text: 'PostgreSQL', link: '/database/PostgreSQL' },
+                            { text: 'SQL Server', link: '/database/SQLServer' },
+                            { text: 'Redis', link: '/database/Redis' },
+                            { text: 'Elasticsearch', link: '/database/Elasticsearch' },
+                        ],
+                    },
+                    {
+                        text: '消息队列',
+                        items: [
+                            { text: 'Kafka', link: '/mq/Kafka' },
+                            { text: 'RabbitMQ', link: '/mq/RabbitMQ' },
+                        ],
+                    },
+                    {
+                        text: '大数据',
+                        items: [
+                            { text: 'Hadoop', link: '/bigdata/Hadoop' },
+                        ],
+                    },
                 ]
             },
             {
-                text: '大数据',
+                text: 'Vibe Coding',
+                activeMatch: '/vibe-coding/*',
                 items: [
-                    { text: 'Hadoop', link: '/bigdata/Hadoop' },
+                    { text: 'Claude Code', link: '/vibe-coding/Claude_Code使用教程' },
+                    { text: 'Codex CLI', link: '/vibe-coding/Codex_CLI使用教程' },
                 ]
             },
             {
-                text: 'AI编程',
-                activeMatch: '/aicode/*',
+                text: '工具箱',
                 items: [
-                    { text: 'Claude Code', link: '/aicode/Claude_Code使用教程' },
-                    { text: 'Codex CLI', link: '/aicode/Codex_CLI使用教程' },
+                    {
+                        text: '站内工具',
+                        items: [
+                            { text: '工具合集', link: '/tools' },
+                        ],
+                    },
+                    {
+                        text: '外站工具',
+                        items: [
+                            { text: 'sojson', link: 'https://www.sojson.com' },
+                            { text: '时间戳', link: 'https://tool.lu/timestamp/' },
+                            { text: 'urlencode', link: 'https://tool.chinaz.com/tools/urlencode.aspx' },
+                            { text: 'unicode', link: 'https://tool.chinaz.com/tools/unicode.aspx' },
+                        ],
+                    },
+                    {
+                        text: '图床',
+                        items: [
+                            { text: '大厂图床', link: 'https://file.sang.pub/' },
+                            { text: '任你流', link: 'https://file.leishennb.icu/' },
+                            { text: '柯艺图床', link: 'https://tc.qdqqd.com/' },
+                            { text: '抖音解析', link: 'https://695402.xyz/dy' },
+                            { text: '喷子图床', link: 'https://pz.al/' },
+                            { text: '乱搞文件床', link: 'https://www.luangao.de/' },
+                        ],
+                    },
                 ]
             },
             {
                 text: '教程',
                 items: [
-                    { text: 'vitepress文档', link: 'https://vitepress.dev/zh/guide/' },
-                    { text: 'vitepress教程', link: 'https://vitepress.yiov.top/' },
-                    
-                ]
-            },
-            {
-                text: '外站工具',
-                items: [
-                    { text: 'sojson', link: 'https://www.sojson.com' },
-                    { text: '时间戳', link: 'https://tool.lu/timestamp/' },
-                    { text: 'urlencode', link: 'https://tool.chinaz.com/tools/urlencode.aspx' },
-                    { text: 'unicode', link: 'https://tool.chinaz.com/tools/unicode.aspx' },
-                    
-                    
-                ]
-            },
-            {
-                text: '图床',
-                items: [
-                    { text: '大厂图床', link: 'https://file.sang.pub/' },
-                    { text: '任你流', link: 'https://file.leishennb.icu/' },
-                    { text: '柯艺图床', link: 'https://tc.qdqqd.com/' },
-                    { text: '抖音解析', link: 'https://695402.xyz/dy' },
-                    { text: '喷子图床', link: 'https://pz.al/' },
-                    { text: '乱搞文件床', link: 'https://www.luangao.de/' },
+                    { text: 'VitePress 文档', link: 'https://vitepress.dev/zh/guide/' },
+                    { text: 'VitePress 教程', link: 'https://vitepress.yiov.top/' },
                 ]
             },
         ],
@@ -187,9 +210,9 @@ const vitePressSidebarOptions = [
         
     },
     {
-        documentRootPath: 'docs/backend',
+        documentRootPath: 'docs/database',
         scanStartPath: 'Redis',
-        resolvePath: '/backend/Redis/',
+        resolvePath: '/database/Redis/',
         useTitleFromFrontmatter: true,
         sortMenusOrderNumericallyFromLink: true,
         removePrefixAfterOrdering: true,
@@ -197,27 +220,27 @@ const vitePressSidebarOptions = [
         
     },
     {
-        documentRootPath: 'docs/backend',
+        documentRootPath: 'docs/database',
         scanStartPath: 'MySQL',
-        resolvePath: '/backend/MySQL/',
+        resolvePath: '/database/MySQL/',
         useTitleFromFrontmatter: true,
         sortMenusOrderNumericallyFromLink: true,
         removePrefixAfterOrdering: true,
         prefixSeparator: '.'
     },
     {
-        documentRootPath: 'docs/backend',
+        documentRootPath: 'docs/database',
         scanStartPath: 'SQLServer',
-        resolvePath: '/backend/SQLServer/',
+        resolvePath: '/database/SQLServer/',
         useTitleFromFrontmatter: true,
         sortMenusOrderNumericallyFromLink: true,
         removePrefixAfterOrdering: true,
         prefixSeparator: '.'
     },
     {
-        documentRootPath: 'docs/backend',
+        documentRootPath: 'docs/database',
         scanStartPath: 'PostgreSQL',
-        resolvePath: '/backend/PostgreSQL/',
+        resolvePath: '/database/PostgreSQL/',
         useTitleFromFrontmatter: true,
         sortMenusOrderNumericallyFromLink: true,
         removePrefixAfterOrdering: true,
@@ -251,9 +274,39 @@ const vitePressSidebarOptions = [
         prefixSeparator: '.'
     },
     {
-        documentRootPath: 'docs/backend',
+        documentRootPath: 'docs/database',
         scanStartPath: 'Elasticsearch',
-        resolvePath: '/backend/Elasticsearch/',
+        resolvePath: '/database/Elasticsearch/',
+        useTitleFromFrontmatter: true,
+        sortMenusOrderNumericallyFromLink: true,
+        removePrefixAfterOrdering: true,
+        prefixSeparator: '.'
+    },
+    {
+        documentRootPath: 'docs',
+        scanStartPath: 'mq',
+        resolvePath: '/mq/',
+        useTitleFromFrontmatter: true,
+        sortMenusOrderNumericallyFromLink: true,
+        removePrefixAfterOrdering: true,
+        prefixSeparator: '.',
+        sortMenusByName: true,
+        useTitleFromFileHeading: true,
+        useFolderTitleFromIndexFile: true,
+    },
+    {
+        documentRootPath: 'docs/mq',
+        scanStartPath: 'Kafka',
+        resolvePath: '/mq/Kafka/',
+        useTitleFromFrontmatter: true,
+        sortMenusOrderNumericallyFromLink: true,
+        removePrefixAfterOrdering: true,
+        prefixSeparator: '.'
+    },
+    {
+        documentRootPath: 'docs/mq',
+        scanStartPath: 'RabbitMQ',
+        resolvePath: '/mq/RabbitMQ/',
         useTitleFromFrontmatter: true,
         sortMenusOrderNumericallyFromLink: true,
         removePrefixAfterOrdering: true,
@@ -287,9 +340,9 @@ const vitePressSidebarOptions = [
         prefixSeparator: '.'
     },
     {
-        documentRootPath: 'docs/backend',
+        documentRootPath: 'docs',
         scanStartPath: 'tools',
-        resolvePath: '/backend/tools/',
+        resolvePath: '/tools/',
         useTitleFromFrontmatter: true,
         sortMenusOrderNumericallyFromLink: true,
         removePrefixAfterOrdering: true,
@@ -297,8 +350,8 @@ const vitePressSidebarOptions = [
     },
     {
         documentRootPath: 'docs',
-        scanStartPath: 'aicode',
-        resolvePath: '/aicode/',
+        scanStartPath: 'vibe-coding',
+        resolvePath: '/vibe-coding/',
         useTitleFromFrontmatter: true,
         sortMenusOrderNumericallyFromLink: true,
         removePrefixAfterOrdering: true,
