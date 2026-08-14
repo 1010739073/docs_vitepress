@@ -25,6 +25,17 @@ sudo -u Mr-Ning php -v
 |    勾股cms    | 10011  |   [勾股cms](http://ddns.nsit.top:10011)    |
 | iptv-sources  | 10012  | [iptv-sources](http://ddns.nsit.top:10012) |
 | yinshun  | 10013  | [yinshun](http://ddns.nsit.top:10013) |
+
+## frpc映射
+<!-- UPDATE_START -->
+
+| 平台 | 名称 | 地址 | 原端口 | 端口 | 访问地址 |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| githup | 文档站 | - | - | - | https://nsit.de5.net |
+| githup | 文档站 | - | - | - | https://nsit.de5.net |
+| githup | 文档站 | - | - | - | https://nsit.de5.net |
+
+<!-- UPDATE_END -->
 ## 添加伪静态
 ```
 1. 先在web station添加网页服务
