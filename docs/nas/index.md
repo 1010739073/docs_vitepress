@@ -31,9 +31,22 @@ sudo -u Mr-Ning php -v
 
 | 平台 | 名称 | 地址 | 原端口 | 端口 | 访问地址 |
 | :---: | :---: | :---: | :---: | :---: | :---: |
-| githup | 文档站 | - | - | - | https://nsit.de5.net |
-| githup | 文档站 | - | - | - | https://nsit.de5.net |
-| githup | 文档站 | - | - | - | https://nsit.de5.net |
+| github | 文档站 | - | - | - | https://nsit.de5.net |
+| chmlfrp | openlist | 82.156.215.91 | 5255 | 25255 | http://82.156.215.91:25255 |
+| chmlfrp | nas | 82.156.215.91 | 5000 | 55000 | http://82.156.215.91:55000 |
+| chmlfrp | vscode | 82.156.215.91 | 8443 | 28443 | http://82.156.215.91:28443 |
+| chmlfrp | fff | 82.156.215.91 | 8088 | 38088 | http://82.156.215.91:38088 |
+| 88frp | AF1rU9JLDSks | 39.104.66.49 | 8443 | 58443 | http://39.104.66.49:58443 |
+| 88frp | ixWY7P20xeQm | 39.104.66.49 | 12000 | 12000 | http://39.104.66.49:12000 |
+| 88frp | QuplISudDvr8 | 39.104.66.49 | 3306 | 23306 | http://39.104.66.49:23306 |
+| 88frp | UdDxb7qymyTR | 39.104.66.49 | 8091 | 28091 | http://39.104.66.49:28091 |
+| 88frp | FktYCTouFmlN | 39.104.66.49 | 22300 | 22300 | http://39.104.66.49:22300 |
+| wispbyte | blog | nlog.de5.net | 10008 | 13610 | http://nlog.de5.net:13610 |
+| wispbyte | game | game.nlog.de5.net | 10018 | 13610 | http://game.nlog.de5.net:13610 |
+| hayfrp | vscode | CN.HK.CN2.hayfrp.qzz.io | 8443 | 58443 | http://CN.HK.CN2.hayfrp.qzz.io:58443 |
+| hayfrp | radio | CN.HK.CN2.hayfrp.qzz.io | 10016 | 50016 | http://CN.HK.CN2.hayfrp.qzz.io:50016 |
+| hayfrp | nas | CN.HK.CN2.hayfrp.qzz.io | 5000 | 55000 | http://CN.HK.CN2.hayfrp.qzz.io:55000 |
+| hayfrp | game | CN.HK.CN2.hayfrp.qzz.io | 10018 | 50018 | http://CN.HK.CN2.hayfrp.qzz.io:50018 |
 
 <!-- UPDATE_END -->
 ## 添加伪静态
