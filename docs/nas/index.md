@@ -43,10 +43,10 @@ sudo -u Mr-Ning php -v
 | 88frp | FktYCTouFmlN | 22300 | http://39.104.66.49:22300 |
 | wispbyte | blog | 10008 | http://nlog.de5.net:13610 |
 | wispbyte | game | 10018 | http://game.nlog.de5.net:13610 |
-| hayfrp | vscode | 8443 | http://CN.HK.CN2.hayfrp.qzz.io:58443 |
-| hayfrp | radio | 10016 | http://CN.HK.CN2.hayfrp.qzz.io:50016 |
-| hayfrp | nas | 5000 | http://CN.HK.CN2.hayfrp.qzz.io:55000 |
-| hayfrp | game | 10018 | http://CN.HK.CN2.hayfrp.qzz.io:50018 |
+| hayfrp | vscode | 8443 | http://154.37.223.250:58443 |
+| hayfrp | radio | 10016 | http://154.37.223.250:50016 |
+| hayfrp | nas | 5000 | http://154.37.223.250:55000 |
+| hayfrp | game | 10018 | http://154.37.223.250:50018 |
 
 <!-- UPDATE_END -->
 ## 添加伪静态
