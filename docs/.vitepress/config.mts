@@ -70,6 +70,11 @@ const vitePressOptions = {
                 ]
             },
             {
+                text: '面试题',
+                link: '/interview/',
+                activeMatch: '/interview/*',
+            },
+            {
                 text: '工具箱',
                 items: [
                     {
@@ -356,6 +361,16 @@ const vitePressSidebarOptions = [
         sortMenusOrderNumericallyFromLink: true,
         removePrefixAfterOrdering: true,
         prefixSeparator: '.'
+    },
+    {
+        documentRootPath: 'docs',
+        scanStartPath: 'interview',
+        resolvePath: '/interview/',
+        useTitleFromFrontmatter: true,
+        sortMenusOrderNumericallyFromLink: true,
+        removePrefixAfterOrdering: true,
+        prefixSeparator: '.',
+        useFolderTitleFromIndexFile: true,
     },
 ];
 
