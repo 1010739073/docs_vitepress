@@ -65,6 +65,7 @@ const vitePressOptions = {
                 text: 'Vibe Coding',
                 activeMatch: '/vibe-coding/*',
                 items: [
+                    { text: '开发全流程', link: '/vibe-coding/1.Vibe_Coding开发全流程' },
                     { text: 'Claude Code', link: '/vibe-coding/Claude_Code使用教程' },
                     { text: 'Codex CLI', link: '/vibe-coding/Codex_CLI使用教程' },
                 ]
