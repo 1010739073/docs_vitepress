@@ -36,17 +36,13 @@ sudo -u Mr-Ning php -v
 | chmlfrp | nas | 5000 | http://82.156.215.91:55000 |
 | chmlfrp | vscode | 8443 | http://82.156.215.91:28443 |
 | chmlfrp | cloud_piercer_manager | 8088 | http://82.156.215.91:38088 |
-| 88frp | AF1rU9JLDSks | 8443 | http://39.104.66.49:58443 |
+| 88frp | AF1rU9JLDSks | 10000 | http://39.104.66.49:10001 |
 | 88frp | ixWY7P20xeQm | 12000 | http://39.104.66.49:12000 |
 | 88frp | QuplISudDvr8 | 3306 | http://39.104.66.49:23306 |
 | 88frp | UdDxb7qymyTR | 8091 | http://39.104.66.49:28091 |
 | 88frp | Rqe9SJgn9ULD | 5000 | http://39.104.66.49:5000 |
 | wispbyte | blog | 10008 | http://nlog.de5.net:13610 |
 | wispbyte | game | 10018 | http://game.nlog.de5.net:13610 |
-| hayfrp | vscode | 8443 | http://154.37.223.250:58443 |
-| hayfrp | radio | 10016 | http://154.37.223.250:50016 |
-| hayfrp | nas | 5000 | http://154.37.223.250:55000 |
-| hayfrp | game | 10018 | http://154.37.223.250:50018 |
 
 <!-- UPDATE_END -->
 ## 添加伪静态
